@@ -3,11 +3,13 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
 import Header from './Header';
+import OptionModal from './OptionModal';
 
 class IndecisionApp extends React.Component {
 
     state = {
-        options: []
+        options: [],
+        selectedOption: undefined
     }
 
     // constructor(props) {
@@ -30,6 +32,10 @@ class IndecisionApp extends React.Component {
         this.setState(() => ({ options: [] }));
     }
 
+    handleClearSelectedOption = () => {
+        this.setState(() => ({ selectedOption: undefined }))
+    }
+
     handleDeleteOption = (optionToRemove) => {
         this.setState((prevState) => ({
             options: prevState.options.filter((option) => optionToRemove !== option)
@@ -38,7 +44,14 @@ class IndecisionApp extends React.Component {
 
     handleWhatShouldIDo = () => {
         const randNum = Math.floor(Math.random() * this.state.options.length);
-        alert(this.state.options[randNum])
+        // alert(this.state.options[randNum])
+
+        this.setState(() => ({
+            selectedOption: this.state.options[randNum]
+        })
+        );
+
+
     }
 
     handleAddOption = (option) => {
@@ -69,14 +82,14 @@ class IndecisionApp extends React.Component {
             // Do Nothing at all
         }
     }
-    
+
     componentDidUpdate(prevProps, prevState) {
         if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('options', json);
         }
     }
-    
+
     componentWillUnmount() {
         console.log('ComponentWillUnMount');
     }
@@ -98,6 +111,8 @@ class IndecisionApp extends React.Component {
                 <AddOption
                     handleAddOption={this.handleAddOption}
                 />
+                <OptionModal selectedOption={this.state.selectedOption}
+                    handleClearSelectedOption={this.handleClearSelectedOption} />
             </div>
         );
     };
