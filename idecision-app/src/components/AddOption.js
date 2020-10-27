@@ -28,7 +28,7 @@ class AddOption extends React.Component {
 
         if (!error)
             e.target.elements.option.value = ''
-    }
+    };
 
     render() {
         return (
