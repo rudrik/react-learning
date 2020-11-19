@@ -1,14 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from '../actions/expenses'
+import { startAddExpenses } from '../actions/expenses'
 
 //To avoid inline function we are converting it to class based component
 
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
+        //Abstract all of the below from the component as component should be only focusing on
+        //displaying and user interaction.
+        //use push firebase
+        //attatch call back
+        //dispatch action
+        // redirect
+
         // props.dispatch(addExpense(expense));
-        this.props.addExpense(expense);
+        this.props.startAddExpenses(expense);
         this.props.history.push('/')
     };
 
@@ -45,7 +52,7 @@ export class AddExpensePage extends React.Component {
 // };
 
 const matchDispatchToProps = (dispatch) => ({
-    addExpense: (expense) => dispatch(addExpense(expense))
+    startAddExpenses: (expense) => dispatch(startAddExpenses(expense))
 });
 
 // First is Map state to props and second is map dispatch to props in connect

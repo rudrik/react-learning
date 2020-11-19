@@ -14,18 +14,20 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-// On always takes a second argument for listening to the changes of the database.
-database.ref('expenses').on('child_removed', (snapshot) => {
-    console.log(snapshot.key, snapshot.val());
-});
+export { firebase, database as default };
 
-database.ref('expenses').on('child_changed', (snapshot) => {
-    console.log(snapshot.key, snapshot.val());
-});
+// // On always takes a second argument for listening to the changes of the database.
+// database.ref('expenses').on('child_removed', (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
+// });
 
-database.ref('expenses').on('child_added', (snapshot) => {
-    console.log(snapshot.key, snapshot.val());
-});
+// database.ref('expenses').on('child_changed', (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
+// });
+
+// database.ref('expenses').on('child_added', (snapshot) => {
+//     console.log(snapshot.key, snapshot.val());
+// });
 
 
 // Listen to the changes
@@ -58,12 +60,12 @@ database.ref('expenses').on('child_added', (snapshot) => {
 
 
 
-database.ref('expenses').push({
-    description: 'Rent Value',
-    note: 'house Rent',
-    amount: 2300,
-    createdAt: 1000
-});
+// database.ref('expenses').push({
+//     description: 'Rent Value',
+//     note: 'house Rent',
+//     amount: 2300,
+//     createdAt: 1000
+// });
 
 
 // database.ref('notes/-MMQ55tomQOTCpOH428g').remove();
