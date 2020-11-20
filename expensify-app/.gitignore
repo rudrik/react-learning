@@ -17,6 +17,8 @@ public/bundle.js.map
 public/styles.css
 public/styles.css.map
 public/dist/
+.env.development
+.env.test
 
 bower_components
 
